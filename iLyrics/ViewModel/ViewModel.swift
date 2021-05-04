@@ -23,7 +23,7 @@ class ViewModel : ObservableObject {
     
     
     
-    //Main method the handles the whole API calling
+    //Main method that handles the whole API calling/handling
     func loadApiSongData2(songName : String, artistName : String) {
         let rawUrl = "https://api.lyrics.ovh/v1/\(artistName)/\(songName)"
         let fixedUrl = rawUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -113,5 +113,12 @@ class ViewModel : ObservableObject {
             }
         }
         return false
+    }
+    
+    
+    
+    
+    func checkForInternetAccess() -> Bool{
+        return NetworkMonitor.shared.isConnected
     }
 }

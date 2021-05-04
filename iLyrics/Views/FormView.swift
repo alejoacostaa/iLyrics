@@ -26,9 +26,10 @@ struct FormView: View {
                     .foregroundColor(.white)
                 
                 TextField("Song Name",text: $songName)
-
+                    
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
+            
             HStack {
                 Text("Artist Name: ")
                     .foregroundColor(.white)
@@ -41,7 +42,7 @@ struct FormView: View {
                 
                 Button(action: {
                     //We check for an active internet connection, if there's none, we wont make any API calls, just alert the user.
-                    if(!NetworkMonitor.shared.isConnected) {
+                    if(!self.viewModel.checkForInternetAccess()) {
                         self.noConnectionAlert.toggle()
                     } else {
                         //We call the method that makes the whole API calling
