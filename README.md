@@ -24,7 +24,7 @@ iLyrics is a simple native iOS/Swift/SwiftUI app that grabs lyrics from the http
 ## Notes
 - iLyrics was tested extensively on an iPhone X with XCode 12.5 (latest at the time), so all testing should be done on that device or some other with equal or similar display size. The plan is to support various display sizes in the future!
 - If you wish to test for the lack of internet access functionality, please do so on a real device! NWPath (apples framework for monitoring internet connectivity) is known to be pretty buggy on the Simulator (As you can see [here](https://www.reddit.com/r/swift/comments/ir8wn5/network_connectivity_is_always_unsatisfied_when/) and [here](https://stackoverflow.com/questions/57223756/nwpathmonitor-not-calling-satisfied-in-swift)) Summarized, when testing on simulators, whatever connection status NWPath detects when the app runs stays forever and does not change. Works flawlessly on a real device though!
-- iLyrics uses some iOS 14 exclusive SwiftUI views (such as Link to toggle YouTube for example) so testing on the latest iOS available is preferred.
+- iLyrics uses some iOS 14 exclusive SwiftUI views (such as Link to toggle YouTube for example) so testing on the latest iOS and XCode available is preferred.
 - Making iLyrics from scratch has been super fun! Should you encounter any issues, feel free to reach out!
 
 ## Demo
