@@ -43,8 +43,10 @@ struct FormView: View {
                     if(!self.viewModel.checkForInternetAccess()) {
                         self.noConnectionAlert.toggle()
                     } else {
-                        //We call the method that makes the whole API calling
-                        viewModel.loadApiSongData2(songName: songName, artistName: artistName)
+                        //We call the method that makes the whole API calling on an asynchronous Task block
+                        Task {
+                            try await viewModel.networkRequest(songName: songName, artistName: artistName)
+                        }
                         
                     }
                 }, label: {

@@ -21,17 +21,15 @@ struct LyricsView: View {
                         .frame(width: 100,height:100)
                         .cornerRadius(30)
                         .padding()
-                    VStack(alignment:.leading) {
+                    VStack(alignment:.leading, spacing: 10) {
                         Text(songDetails.songName)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.primary)
-                            .padding(.top, 5)
                         Text(songDetails.artistName)
-                            .padding(.top, 3)
                             .font(.title2)
                             .foregroundColor(.primary)
-                        HStack(spacing: 20) {
+                        HStack {
                             Text("HOT")
                                 .font(.headline)
                                 .fontWeight(.bold)
@@ -48,8 +46,6 @@ struct LyricsView: View {
                                 .foregroundColor(.primary)
                                 .cornerRadius(10)
                         }
-                        .padding(.top, 15)
-                        .offset(x: -20)
                     }
                 }
                 .padding(.top, 30)

@@ -18,7 +18,6 @@
 		9571C6EB2638C85F00056FBA /* iLyricsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571C6EA2638C85F00056FBA /* iLyricsApp.swift */; };
 		9571C6EF2638C86000056FBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9571C6EE2638C86000056FBA /* Assets.xcassets */; };
 		9571C6F22638C86000056FBA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9571C6F12638C86000056FBA /* Preview Assets.xcassets */; };
-		95725A5226406E3D00CC8E7E /* ErrorEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95725A5126406E3D00CC8E7E /* ErrorEnums.swift */; };
 		95EB4C16263F183F00523ADE /* CustomListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB4C15263F183F00523ADE /* CustomListCellView.swift */; };
 		95EB4C18263F2AA700523ADE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB4C17263F2AA700523ADE /* HistoryView.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +36,6 @@
 		9571C6EE2638C86000056FBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9571C6F12638C86000056FBA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9571C6F32638C86000056FBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95725A5126406E3D00CC8E7E /* ErrorEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnums.swift; sourceTree = "<group>"; };
 		95EB4C15263F183F00523ADE /* CustomListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListCellView.swift; sourceTree = "<group>"; };
 		95EB4C17263F2AA700523ADE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +68,6 @@
 		950229A62640EA33009D9548 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				95725A5126406E3D00CC8E7E /* ErrorEnums.swift */,
 				9555A02F263902680058D22B /* Song.swift */,
 			);
 			path = Data;
@@ -207,7 +204,6 @@
 				952ED7B1263C57880062F081 /* HomeView.swift in Sources */,
 				9555A02E263901B00058D22B /* LyricsView.swift in Sources */,
 				95EB4C18263F2AA700523ADE /* HistoryView.swift in Sources */,
-				95725A5226406E3D00CC8E7E /* ErrorEnums.swift in Sources */,
 				950229A32640E98C009D9548 /* NetworkMonitor.swift in Sources */,
 				9571C6EB2638C85F00056FBA /* iLyricsApp.swift in Sources */,
 				95EB4C16263F183F00523ADE /* CustomListCellView.swift in Sources */,

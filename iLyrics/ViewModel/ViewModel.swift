@@ -12,74 +12,22 @@ class ViewModel : ObservableObject {
     @Published var apiResponse : SongDetails?
     @Published var lyricsHistory : SongDetails?
     @Published var errorDuringApiCall = false
-    @Published var apiError: APIError? {
-        didSet {
-            errorDuringApiCall = true
-        }
-    }
     
     //Main method that handles the whole API calling/handling
-    func loadApiSongData2(songName : String, artistName : String) {
-        let rawUrl = "https://api.lyrics.ovh/v1/\(artistName)/\(songName)"
-        let fixedUrl = rawUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let url = URL(string: fixedUrl!) else {
-            print("Invalid URL")
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-                DispatchQueue.main.async {
-                    self.responseHandler(data, response, error, songName, artistName)
-                }
-            }.resume()
-    }
-    
-    //Completion handler for the API call
-    private func responseHandler(_ data: Data?,
-                         _ response: URLResponse?,
-                         _ error: Error?,
-                         _ songName: String,
-                         _ artistName: String) {
-        if let error = error {
-            if error._code == -1009 {
-                apiError = .offline
-            } else {
-                apiError = .sessionError
-            }
-            return
-        }
-        guard let response = response as? HTTPURLResponse, let data = data else {
-            apiError = .missingDataError
-            return
-        }
-        guard (200..<300).contains(response.statusCode) else {
-            switch Status(rawValue: response.statusCode) {
-            case .requestTimeout:
-                apiError = .timeoutError
-            case .internalServerError:
-                apiError = .internalServerError
-            case .notFound:
-                apiError = .notFound
-            default:
-                apiError = .requestError
-            }
-            
-            return
-        }
-        do {
-            let decodedResponse = try JSONDecoder().decode(Song.self, from: data)
+    func networkRequest(songName: String, artistName: String) async throws {
+        guard let url = URL(string: "https://api.lyrics.ovh/v1/\(artistName)/\(songName)") else  { return }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { return }
+        let decoder = JSONDecoder()
+        let decodedSong = try decoder.decode(Song.self, from: data)
+        let song = SongDetails(songName: songName, artistName: artistName, lyrics: decodedSong.lyrics)
+        await MainActor.run {
             if(!songAlreadySearched(songName: songName)) {
-                let song = SongDetails(songName: songName, artistName: artistName, lyrics: decodedResponse.lyrics)
                 searchedSongs.append(song)
             }
-            apiResponse = SongDetails(songName: songName, artistName: artistName, lyrics: decodedResponse.lyrics)
-        } catch {
-            apiError = .parsingError
+            apiResponse = song
         }
     }
-    
     
     //Simply returns lyrics that have already been searched
     func getSong(songName : String) {
@@ -91,7 +39,7 @@ class ViewModel : ObservableObject {
         }
     }
 
-    //If the user searhes lyrics that have already been searched before, we need to remove that search and add it to the last position of the array. If we do not do this, the order of the cells on Previous Search and History gets messed up.
+    //If the user searches lyrics that have already been searched before, we need to remove that search and add it to the last position of the array. If we do not do this, the order of the cells on Previous Search and History gets messed up.
     func songAlreadySearched(songName : String) -> Bool {
         for song in self.searchedSongs {
             if song.songName == songName {
