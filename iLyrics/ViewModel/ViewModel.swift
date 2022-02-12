@@ -7,10 +7,9 @@
 
 import Foundation
 
-
 class ViewModel : ObservableObject {
     @Published var searchedSongs = [SongDetails]()
-    @Published var apiResponse : APIResponse?
+    @Published var apiResponse : SongDetails?
     @Published var lyricsHistory : SongDetails?
     @Published var errorDuringApiCall = false
     @Published var apiError: APIError? {
@@ -19,16 +18,10 @@ class ViewModel : ObservableObject {
         }
     }
     
-    
-    
-    
-    
     //Main method that handles the whole API calling/handling
     func loadApiSongData2(songName : String, artistName : String) {
         let rawUrl = "https://api.lyrics.ovh/v1/\(artistName)/\(songName)"
         let fixedUrl = rawUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
- 
-        
         guard let url = URL(string: fixedUrl!) else {
             print("Invalid URL")
             return
@@ -81,8 +74,7 @@ class ViewModel : ObservableObject {
                 let song = SongDetails(songName: songName, artistName: artistName, lyrics: decodedResponse.lyrics)
                 searchedSongs.append(song)
             }
-            apiResponse = APIResponse(apiValues: [decodedResponse.lyrics])
-            
+            apiResponse = SongDetails(songName: songName, artistName: artistName, lyrics: decodedResponse.lyrics)
         } catch {
             apiError = .parsingError
         }
@@ -99,7 +91,6 @@ class ViewModel : ObservableObject {
         }
     }
 
-
     //If the user searhes lyrics that have already been searched before, we need to remove that search and add it to the last position of the array. If we do not do this, the order of the cells on Previous Search and History gets messed up.
     func songAlreadySearched(songName : String) -> Bool {
         for song in self.searchedSongs {
@@ -114,9 +105,6 @@ class ViewModel : ObservableObject {
         }
         return false
     }
-    
-    
-    
     
     func checkForInternetAccess() -> Bool{
         return NetworkMonitor.shared.isConnected

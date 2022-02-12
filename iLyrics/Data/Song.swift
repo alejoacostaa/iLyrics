@@ -7,14 +7,6 @@
 
 import Foundation
 
-
-
-
-struct APIResponse : Identifiable {
-    var id = UUID()
-    var apiValues : [String] = []
-}
-
 struct SongDetails: Identifiable, Equatable {
     var id = UUID()
     let songName : String
@@ -23,9 +15,9 @@ struct SongDetails: Identifiable, Equatable {
     
 }
 
-
-struct Song : Codable {
-    var lyrics : String
+struct Song : Codable, Identifiable {
+    let id = UUID()
+    let lyrics : String
 }
 
 

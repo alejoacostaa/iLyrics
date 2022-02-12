@@ -20,23 +20,23 @@ struct CustomListCellView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 60, height: 60)
                 .cornerRadius(30)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
             VStack(alignment: .leading) {
                 Text(songName)
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 Text(artistName)
                     .font(.subheadline)
                     .fontWeight(.medium)
                     
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
             }
             .padding(.leading, 20)
             Spacer()
             Image(systemName: "chevron.right")
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
         }
         .contentShape(Rectangle())
     }

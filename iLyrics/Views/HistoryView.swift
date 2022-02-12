@@ -17,11 +17,10 @@ struct HistoryView: View {
     var body: some View {
         
         ZStack(alignment: .top) {
-            Color.black.edgesIgnoringSafeArea(.all)
             VStack(alignment: .leading) {
                 HStack {
                     Text("History")
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
@@ -42,8 +41,8 @@ struct HistoryView: View {
                             .padding(.leading, 30)
                             .padding(.top, 15)
                     }
-                    .sheet(item: $vm.lyricsHistory) { item in
-                        LyricsView(vm: self.vm, songName: item.songName, artistName: item.artistName, arrLyrics: [item.lyrics])
+                    .sheet(item: $vm.lyricsHistory) { songDetails in
+                        LyricsView(vm: self.vm, songDetails: songDetails)
                     }
                 }
             }

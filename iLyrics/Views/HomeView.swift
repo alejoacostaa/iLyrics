@@ -15,8 +15,8 @@ struct HomeView: View {
     @ObservedObject var viewModel = ViewModel()
     init() {
         NetworkMonitor.shared.startMonitoring()
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().barTintColor = UIColor.black
+        //UITabBar.appearance().isTranslucent = false
+        //UITabBar.appearance().barTintColor = UIColor.black
     }
     
     var body: some View {
@@ -28,7 +28,7 @@ struct HomeView: View {
                 FormView(viewModel: self.viewModel)
                 Spacer()
             }
-            .background(Color.black)
+           // .background(Color.black)
             .edgesIgnoringSafeArea(.all)
             .tabItem {
                 Image(systemName: "house")
@@ -40,7 +40,7 @@ struct HomeView: View {
                     Text("History")
                 }
         }
-        .accentColor(.white)
+        .tint(.orange)
     }
 }
 

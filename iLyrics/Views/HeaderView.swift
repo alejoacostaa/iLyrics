@@ -18,11 +18,11 @@ struct HeaderView: View {
                 Text(self.name)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 Text(self.lastName)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
 
                 HStack {
                     Text("Premium")
@@ -30,16 +30,16 @@ struct HeaderView: View {
                         .frame(width: 90, height: 30)
                         .background(Color.green)
                         .cornerRadius(7)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
 
 
                     Image(systemName: "bolt.fill")
                         .foregroundColor(.yellow)
                         .padding(.leading, 10)
                     Text(String(self.points))
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                     Text("Points")
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .font(.callout)
                         .fontWeight(.bold)
                 }
@@ -56,6 +56,7 @@ struct HeaderView: View {
                 .clipShape(Capsule())
                 .shadow(radius: 10)
                 .padding(.bottom, 50)
+                .padding(.trailing, 20)
                 .onTapGesture {
                     self.showingAlert.toggle()
                 }

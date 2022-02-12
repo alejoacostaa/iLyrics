@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct FormView: View {
-    
     @State private var songName = ""
     @State private var artistName = ""
     @State private var showingLyricsSheet = false
     @State private var noConnectionAlert = false
     @ObservedObject var viewModel : ViewModel
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 25) {
             Text("Search Lyrics")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color.white)
+                .foregroundColor(.primary)
             HStack {
                 Text("Song Name: ")
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
                 TextField("Song Name",text: $songName)
                     
@@ -32,7 +30,7 @@ struct FormView: View {
             
             HStack {
                 Text("Artist Name: ")
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
                 TextField("Artist Name",text: $artistName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -59,35 +57,32 @@ struct FormView: View {
             }
             .padding(.top, 20)
             //We set the lyrics sheet to render only when we confirm we got valid lyrics from the API call.
-            .sheet(item: $viewModel.apiResponse) { item in
-                LyricsView(vm: self.viewModel, songName: songName, artistName: artistName, arrLyrics: item.apiValues)
+            .sheet(item: $viewModel.apiResponse) { songDetails in
+                LyricsView(vm: self.viewModel, songDetails: songDetails)
             }
             //"Previous search" Lyrics sheet
             .sheet(isPresented: $showingLyricsSheet) {
-                LyricsView(vm: self.viewModel, songName: self.viewModel.searchedSongs.last!.songName, artistName: self.viewModel.searchedSongs.last!.artistName, arrLyrics: [self.viewModel.searchedSongs.last!.lyrics])
+                LyricsView(vm: self.viewModel, songDetails: SongDetails(songName: self.viewModel.searchedSongs.last!.songName, artistName: self.viewModel.searchedSongs.last!.artistName, lyrics: self.viewModel.searchedSongs.last!.lyrics))
             }
             
             Text("Previous Search")
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color.white)
+                .foregroundColor(.primary)
                 //Display an alert if the user tries to search lyrics with no internet access
                 .alert(isPresented: $noConnectionAlert) {
                     Alert(title: Text("No internet connection"), message: Text("Oops! It seems you arent connected to the internet. Please connect and try again!"), dismissButton: .default(Text("Got it!")))
                 }
             if(viewModel.searchedSongs.count < 1) {
                 Text("You havent searched any song yet!")
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                 
             } else {
                 CustomListCellView(artistName: viewModel.searchedSongs.last!.artistName, songName: viewModel.searchedSongs.last!.songName)
                     .onTapGesture {
                         self.showingLyricsSheet.toggle()
                     }
-                
             }
-            
-            
         }
         .padding()
     }
