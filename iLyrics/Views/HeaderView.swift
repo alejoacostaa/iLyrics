@@ -55,15 +55,6 @@ struct HeaderView: View {
                     self.showingAlert.toggle()
                 }
         }
-        //                .resizable()
-        //                .frame(width: 100, height:100)
-        //                .clipShape(Capsule())
-        //                .shadow(radius: 10)
-        //                .padding(.bottom, 50)
-        //                .padding(.trailing, 20)
-        //                .onTapGesture {
-        //                    self.showingAlert.toggle()
-        //                }
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("About Me"), message: Text("Hi ! I'm Alejo, a Junior iOS developer looking for his first iOS Job!"), dismissButton: .default(Text("Nice meeting you!")))
         }
