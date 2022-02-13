@@ -10,6 +10,7 @@
 		9502299E2640E45A009D9548 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502299D2640E45A009D9548 /* FormView.swift */; };
 		950229A02640E4C2009D9548 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9502299F2640E4C2009D9548 /* HeaderView.swift */; };
 		950229A32640E98C009D9548 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950229A22640E98C009D9548 /* NetworkMonitor.swift */; };
+		9508014427B980B400DD184B /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508014327B980B400DD184B /* Picture.swift */; };
 		952ED7B1263C57880062F081 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952ED7B0263C57880062F081 /* HomeView.swift */; };
 		952ED7B7263CA40A0062F081 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952ED7B6263CA40A0062F081 /* CustomButton.swift */; };
 		9555A02E263901B00058D22B /* LyricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555A02D263901B00058D22B /* LyricsView.swift */; };
@@ -27,6 +28,7 @@
 		9502299D2640E45A009D9548 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		9502299F2640E4C2009D9548 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		950229A22640E98C009D9548 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		9508014327B980B400DD184B /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		952ED7B0263C57880062F081 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		952ED7B6263CA40A0062F081 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9555A02D263901B00058D22B /* LyricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				9555A02F263902680058D22B /* Song.swift */,
+				9508014327B980B400DD184B /* Picture.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				95EB4C18263F2AA700523ADE /* HistoryView.swift in Sources */,
 				950229A32640E98C009D9548 /* NetworkMonitor.swift in Sources */,
 				9571C6EB2638C85F00056FBA /* iLyricsApp.swift in Sources */,
+				9508014427B980B400DD184B /* Picture.swift in Sources */,
 				95EB4C16263F183F00523ADE /* CustomListCellView.swift in Sources */,
 				950229A02640E4C2009D9548 /* HeaderView.swift in Sources */,
 			);

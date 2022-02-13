@@ -43,7 +43,7 @@ struct FormView: View {
                         //We call the method that makes the whole API calling on an asynchronous Task block
                         Task {
                             isLoading = true
-                            await viewModel.networkRequest(songName: songName, artistName: artistName)
+                            await viewModel.lyricsNetworkRequest(songName: songName, artistName: artistName)
                             isLoading = false
                         }
                     }

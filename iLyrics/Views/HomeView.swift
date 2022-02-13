@@ -20,7 +20,7 @@ struct HomeView: View {
     var body: some View {
         TabView {
             VStack(alignment: .leading) {
-                HeaderView()
+                HeaderView(viewModel: self.viewModel)
                     .padding(.top, 80)
                     .padding(.bottom, 30)
                 FormView(viewModel: self.viewModel)
@@ -37,6 +37,9 @@ struct HomeView: View {
                     Image(systemName: "music.note.list")
                     Text("History")
                 }
+        }
+        .task {
+            await viewModel.pictureNetworkRequest()
         }
     }
 }

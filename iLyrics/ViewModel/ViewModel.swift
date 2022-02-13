@@ -10,11 +10,12 @@ import Foundation
 //Ensures every UI update is performed on the main thread.
 @MainActor
 class ViewModel : ObservableObject {
-    private let lyricsService : LyricsService
+    let lyricsService : LyricsService
     @Published var searchedSongs = [SongDetails]()
     @Published var apiResponse : SongDetails?
     @Published var lyricsHistory : SongDetails?
     @Published var showingGenericErrorAlert = false
+    @Published var profilePictureURL: String?
     var errorMessage: String?
     
     init(service: LyricsService) {
@@ -22,7 +23,7 @@ class ViewModel : ObservableObject {
     }
     
     //Main method that handles the whole API calling/handling
-    func networkRequest(songName: String, artistName: String) async {
+    func lyricsNetworkRequest(songName: String, artistName: String) async {
         do {
             let song = try await lyricsService.fetchLyrics(songName: songName, artistName: artistName)
                 let songDetails = SongDetails(songName: songName, artistName: artistName, lyrics: song.lyrics)
@@ -40,6 +41,16 @@ class ViewModel : ObservableObject {
         } catch {
             showingGenericErrorAlert.toggle()
             errorMessage = "Unknown Error"
+        }
+    }
+    
+    func pictureNetworkRequest() async {
+        do {
+            let profilePictures = try await lyricsService.fetchImage()
+            let randomPicture = profilePictures.randomElement()
+            profilePictureURL = randomPicture?.picture["medium"]
+        } catch {
+            
         }
     }
     

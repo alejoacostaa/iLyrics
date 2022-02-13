@@ -11,6 +11,7 @@ struct HeaderView: View {
     let name = "Alejo"
     let lastName = "Acosta"
     @State private var showingAlert = false
+    @ObservedObject var viewModel : ViewModel
     let points = Int.random(in: 200..<300)
     var body: some View {
         HStack {
@@ -44,9 +45,7 @@ struct HeaderView: View {
             }
             .padding(.horizontal, 20)
             Spacer()
-            Image("profilePicture")
-                .resizable()
-                .scaledToFit()
+            AsyncImage(url: URL(string: viewModel.profilePictureURL ?? "https://www.appcoda.com/wp-content/uploads/2021/06/asyncimage-change-image-size.png"))
                 .frame(width: 100, height:100)
                 .clipShape(Capsule())
                 .shadow(radius: 10)
@@ -55,17 +54,24 @@ struct HeaderView: View {
                 .onTapGesture {
                     self.showingAlert.toggle()
                 }
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("About Me"), message: Text("Hi ! I'm Alejo, a Junior iOS developer looking for his first iOS Job!"), dismissButton: .default(Text("Nice meeting you!")))
-                }
+        }
+        //                .resizable()
+        //                .frame(width: 100, height:100)
+        //                .clipShape(Capsule())
+        //                .shadow(radius: 10)
+        //                .padding(.bottom, 50)
+        //                .padding(.trailing, 20)
+        //                .onTapGesture {
+        //                    self.showingAlert.toggle()
+        //                }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("About Me"), message: Text("Hi ! I'm Alejo, a Junior iOS developer looking for his first iOS Job!"), dismissButton: .default(Text("Nice meeting you!")))
         }
     }
-
 }
-
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView(viewModel: ViewModel(service: LyricsService()))
     }
 }
