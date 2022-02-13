@@ -24,7 +24,6 @@ struct FormView: View {
                 Text("Song Name: ")
                     .foregroundColor(.primary)
                 TextField("Song Name",text: $songName)
-                
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
             HStack {
@@ -44,7 +43,7 @@ struct FormView: View {
                         //We call the method that makes the whole API calling on an asynchronous Task block
                         Task {
                             isLoading = true
-                            try await viewModel.networkRequest(songName: songName, artistName: artistName)
+                            await viewModel.networkRequest(songName: songName, artistName: artistName)
                             isLoading = false
                         }
                     }
@@ -53,8 +52,9 @@ struct FormView: View {
                         CustomButton(sfSymbolName: "music.note", text: "Search Lyrics!")
                     }
                 })
-                    .alert(isPresented: $viewModel.errorDuringApiCall) {
-                        Alert(title: Text("Error"), message: Text("Oops! There was an error grabbing your lyrics. Maybe a typo? Try again!"), dismissButton: .default(Text("Got it!")))
+                //Modern iOS15 Alert syntax
+                    .alert(viewModel.errorMessage ?? "", isPresented: $viewModel.showingGenericErrorAlert) {
+                        Button("OK", role: .cancel) {}
                     }
                 if isLoading {
                     ProgressView()
@@ -96,6 +96,6 @@ struct FormView: View {
 
 struct FormView_Previews: PreviewProvider {
     static var previews: some View {
-        FormView(viewModel: ViewModel())
+        FormView(viewModel: ViewModel(service: LyricsService()))
     }
 }

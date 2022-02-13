@@ -7,25 +7,39 @@
 
 import Foundation
 
+//Ensures every UI update is performed on the main thread.
+@MainActor
 class ViewModel : ObservableObject {
+    private let lyricsService : LyricsService
     @Published var searchedSongs = [SongDetails]()
     @Published var apiResponse : SongDetails?
     @Published var lyricsHistory : SongDetails?
-    @Published var errorDuringApiCall = false
+    @Published var showingGenericErrorAlert = false
+    var errorMessage: String?
+    
+    init(service: LyricsService) {
+        lyricsService = service
+    }
     
     //Main method that handles the whole API calling/handling
-    func networkRequest(songName: String, artistName: String) async throws {
-        guard let url = URL(string: "https://api.lyrics.ovh/v1/\(artistName)/\(songName)") else  { return }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { return }
-        let decoder = JSONDecoder()
-        let decodedSong = try decoder.decode(Song.self, from: data)
-        let song = SongDetails(songName: songName, artistName: artistName, lyrics: decodedSong.lyrics)
-        await MainActor.run {
-            if(!songAlreadySearched(songName: songName)) {
-                searchedSongs.append(song)
-            }
-            apiResponse = song
+    func networkRequest(songName: String, artistName: String) async {
+        do {
+            let song = try await lyricsService.fetchLyrics(songName: songName, artistName: artistName)
+                let songDetails = SongDetails(songName: songName, artistName: artistName, lyrics: song.lyrics)
+                apiResponse = songDetails
+                guard let apiResponse = apiResponse else { return }
+                if(!songAlreadySearched(songName: songName)) {
+                    searchedSongs.append(apiResponse)
+                }
+        } catch LyricsService.LyricsServiceError.invalidStatusCode {
+            showingGenericErrorAlert.toggle()
+            errorMessage = "Unable to find lyrics - maybe a typo? Try again!"
+        } catch LyricsService.LyricsServiceError.failedToCreateURL {
+            showingGenericErrorAlert.toggle()
+            errorMessage = "Failed to create URL"
+        } catch {
+            showingGenericErrorAlert.toggle()
+            errorMessage = "Unknown Error"
         }
     }
     

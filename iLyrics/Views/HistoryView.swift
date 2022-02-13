@@ -52,7 +52,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        
-        HistoryView(vm: ViewModel())
+        HistoryView(vm: ViewModel(service: LyricsService()))
     }
 }

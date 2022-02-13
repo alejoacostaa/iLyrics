@@ -12,13 +12,11 @@ import Network
 
 //Main app view
 struct HomeView: View {
-    @ObservedObject var viewModel = ViewModel()
+    //Service object dependency injection
+    @ObservedObject var viewModel = ViewModel(service: LyricsService())
     init() {
         NetworkMonitor.shared.startMonitoring()
-        //UITabBar.appearance().isTranslucent = false
-        //UITabBar.appearance().barTintColor = UIColor.black
     }
-    
     var body: some View {
         TabView {
             VStack(alignment: .leading) {
@@ -40,7 +38,6 @@ struct HomeView: View {
                     Text("History")
                 }
         }
-        .tint(.orange)
     }
 }
 

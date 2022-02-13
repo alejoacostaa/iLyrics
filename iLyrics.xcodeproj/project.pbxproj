@@ -18,6 +18,7 @@
 		9571C6EB2638C85F00056FBA /* iLyricsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571C6EA2638C85F00056FBA /* iLyricsApp.swift */; };
 		9571C6EF2638C86000056FBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9571C6EE2638C86000056FBA /* Assets.xcassets */; };
 		9571C6F22638C86000056FBA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9571C6F12638C86000056FBA /* Preview Assets.xcassets */; };
+		95E57B4427B942C2006F4E3C /* LyricsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E57B4327B942C2006F4E3C /* LyricsService.swift */; };
 		95EB4C16263F183F00523ADE /* CustomListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB4C15263F183F00523ADE /* CustomListCellView.swift */; };
 		95EB4C18263F2AA700523ADE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EB4C17263F2AA700523ADE /* HistoryView.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		9571C6EE2638C86000056FBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9571C6F12638C86000056FBA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9571C6F32638C86000056FBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95E57B4327B942C2006F4E3C /* LyricsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsService.swift; sourceTree = "<group>"; };
 		95EB4C15263F183F00523ADE /* CustomListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListCellView.swift; sourceTree = "<group>"; };
 		95EB4C17263F2AA700523ADE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 		9571C6DE2638C85F00056FBA = {
 			isa = PBXGroup;
 			children = (
+				95E57B4227B942AA006F4E3C /* Service */,
 				9571C6E92638C85F00056FBA /* iLyrics */,
 				9571C6E82638C85F00056FBA /* Products */,
 			);
@@ -126,6 +129,14 @@
 				9571C6F12638C86000056FBA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		95E57B4227B942AA006F4E3C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				95E57B4327B942C2006F4E3C /* LyricsService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +213,7 @@
 				9555A032263902EC0058D22B /* ViewModel.swift in Sources */,
 				9555A030263902680058D22B /* Song.swift in Sources */,
 				952ED7B1263C57880062F081 /* HomeView.swift in Sources */,
+				95E57B4427B942C2006F4E3C /* LyricsService.swift in Sources */,
 				9555A02E263901B00058D22B /* LyricsView.swift in Sources */,
 				95EB4C18263F2AA700523ADE /* HistoryView.swift in Sources */,
 				950229A32640E98C009D9548 /* NetworkMonitor.swift in Sources */,

@@ -11,7 +11,7 @@ struct HeaderView: View {
     let name = "Alejo"
     let lastName = "Acosta"
     @State private var showingAlert = false
-    let points = 467
+    let points = Int.random(in: 200..<300)
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
@@ -23,7 +23,6 @@ struct HeaderView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-
                 HStack {
                     Text("Premium")
                         .fontWeight(.bold)
@@ -31,8 +30,6 @@ struct HeaderView: View {
                         .background(Color.green)
                         .cornerRadius(7)
                         .foregroundColor(.primary)
-
-
                     Image(systemName: "bolt.fill")
                         .foregroundColor(.yellow)
                         .padding(.leading, 10)
@@ -47,9 +44,7 @@ struct HeaderView: View {
             }
             .padding(.horizontal, 20)
             Spacer()
-
             Image("profilePicture")
-
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height:100)
@@ -63,9 +58,7 @@ struct HeaderView: View {
                 .alert(isPresented: $showingAlert) {
                     Alert(title: Text("About Me"), message: Text("Hi ! I'm Alejo, a Junior iOS developer looking for his first iOS Job!"), dismissButton: .default(Text("Nice meeting you!")))
                 }
-
         }
-
     }
 
 }
