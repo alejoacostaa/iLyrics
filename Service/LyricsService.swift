@@ -27,7 +27,7 @@ struct LyricsService {
         return decodedSong
     }
     
-    func fetchImage() async throws -> [Picture] {
+    func fetchImage() async throws -> [PictureResponse] {
         guard let url = URL(string: "https://randomuser.me/api/?results=10") else {
             throw LyricsServiceError.failedToCreateURL
         }

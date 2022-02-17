@@ -48,9 +48,9 @@ class ViewModel : ObservableObject {
         do {
             let profilePictures = try await lyricsService.fetchImage()
             let randomPicture = profilePictures.randomElement()
-            profilePictureURL = randomPicture?.picture["medium"]
+            profilePictureURL = randomPicture?.picture?.thumbnail
         } catch {
-            
+            //TODO: Handle errors
         }
     }
     

@@ -8,10 +8,16 @@
 import Foundation
 
 struct PicturesResponse: Decodable {
-    let results: [Picture]
+    let results: [PictureResponse]
 }
 
 
-struct Picture : Codable {
-    let picture: [String: String]
+struct PictureResponse : Codable {
+    let picture: Picture?
+}
+
+struct Picture: Codable {
+    let medium: String?
+    let large: String?
+    let thumbnail: String?
 }
